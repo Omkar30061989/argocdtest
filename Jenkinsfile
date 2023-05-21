@@ -7,6 +7,19 @@ pipeline {
                 sh 'docker build -t gcr.io/alert-vista-383906/my-first-nodejs:1.0 .'
             }
         }
+
+    stage('Configure Google Cloud SDK') {
+      steps {
+        // Install and configure Google Cloud SDK
+        // Make sure you have the necessary Google Cloud credentials and set up the required permissions.
+        // You may need to install additional Jenkins plugins for this step.
+        withGoogleCloudSDK(credentialsId: 'gcr-service-account-key', installation: 'your-gcloud-installation') {
+          // Set the Google Cloud project ID
+          sh 'gcloud config set project alert-vista-383906'
+        }
+      }
+    }
+
         
    stage('Authenticate Docker with Google Cloud Registry') {
       steps {
