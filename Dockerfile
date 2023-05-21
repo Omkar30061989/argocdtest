@@ -6,7 +6,7 @@ COPY package*.json ./
 
 RUN npm ci --only=production
 
-#RUN npm install
+RUN npm install
 
 COPY . .
 
