@@ -13,7 +13,7 @@ pipeline {
         // Install and configure Google Cloud SDK
         // Make sure you have the necessary Google Cloud credentials and set up the required permissions.
         // You may need to install additional Jenkins plugins for this step.
-        withGoogleCloudSDK(credentialsId: 'gcr-service-account-key', installation: 'your-gcloud-installation') {
+        withGoogleCloudSDK(credentialsId: 'gcr-service-account-key') {
           // Set the Google Cloud project ID
           sh 'gcloud config set project alert-vista-383906'
         }
