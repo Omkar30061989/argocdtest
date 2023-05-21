@@ -11,7 +11,7 @@ pipeline {
    stage('Authenticate Docker with Google Cloud Registry') {
       steps {
         // Configure Docker to authenticate with Google Cloud Registry
-        withCredentials([string(credentialsId: 'gcr-service-account-key', variable: 'GCR_KEY')]) {
+        withCredentials([file(credentialsId: 'gcr-service-account-key', variable: 'GCR_KEY')]) {
           sh '''
             echo $GCR_KEY | base64 --decode > /tmp/key.json
             gcloud auth activate-service-account --key-file=/tmp/key.json
