@@ -14,7 +14,8 @@ pipeline {
         withCredentials([string(credentialsId: 'gcr-service-account-key', variable: 'GCR_KEY')]) {
           sh '''
             echo $GCR_KEY | base64 --decode > /tmp/key.json
-            docker login -u _json_key --password-stdin https://gcr.io < /tmp/key.json
+            gcloud auth activate-service-account --key-file=/tmp/key.json
+            gcloud auth configure-docker
           '''
         }
       }
