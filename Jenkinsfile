@@ -15,7 +15,9 @@ pipeline {
           // Authenticate Docker with GCR
           withCredentials([file(credentialsId: 'my-gcp-credentials-id', variable: 'GCR_KEY')]) {
             sh '''
-              docker login -u _json_key --password-stdin ${GCR_HOST} < $GCR_KEY
+              cp $GCR_KEY /tmp/key.json
+              gcloud auth activate-service-account --key-file=/tmp/key.json
+              gcloud auth configure-docker
               docker push gcr.io/alert-vista-383906/my-first-nodejs:1.0
               '''
               }
