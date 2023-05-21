@@ -7,6 +7,7 @@ pipeline {
                 sh 'docker build -t gcr.io/alert-vista-383906/my-first-nodejs:1.0 .'
             }
         }
+    
 
      stage('Push Docker Image to GCR') {
       steps {
@@ -19,3 +20,5 @@ pipeline {
               }
          }
      }
+   }
+  }
