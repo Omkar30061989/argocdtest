@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'docker build -t <gcr-hostname>/<project-id>/<image-name>:<tag> .'
+                sh 'docker build -t gcr.io/alert-vista-383906/my-first-nodejs:1.0 .'
             }
         }
         
@@ -14,7 +14,7 @@ pipeline {
                     sh 'echo $GCR_SERVICE_ACCOUNT_KEY | base64 --decode > gcr-key.json'
                     sh 'gcloud auth activate-service-account --key-file=gcr-key.json'
                     sh 'gcloud auth configure-docker'
-                    sh 'docker push <gcr-hostname>/<project-id>/<image-name>:<tag>'
+                    sh 'docker push docker build -t gcr.io/alert-vista-383906/my-first-nodejs:1.0'
                 }
             }
         }
