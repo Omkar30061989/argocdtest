@@ -11,7 +11,7 @@ pipeline {
       steps {
         script {
           // Build the Docker image
-          sh "docker build -t my-image:21.5 ."
+          sh "docker build -t omkargujar30/firstrepo/my-image:21.5 ."
         }
       }
     }
