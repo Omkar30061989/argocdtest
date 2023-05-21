@@ -21,7 +21,7 @@ pipeline {
           script {
 
             // Login to Docker Hub
-            sh "docker login -u ${dockerhubUsername} -p ${dockerhubPassword}"
+            sh "docker login -u ${DOCKERHUB_USERNAME} -p ${DOCKERHUB_PASSWORD}"
 
             // Push the Docker image to Docker Hub
             sh "docker push my-image:21.5"
