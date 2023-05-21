@@ -11,7 +11,7 @@ pipeline {
       steps {
         script {
           // Build the Docker image
-          sh "docker build -t omkargujar30/firstrepo/my-image:21.5 ."
+          sh "docker build -t omkargujar30/firstrepo:21.5 ."
         }
       }
     }
@@ -24,7 +24,7 @@ pipeline {
             sh "docker login -u ${DOCKERHUB_USERNAME} -p ${DOCKERHUB_PASSWORD}"
 
             // Push the Docker image to Docker Hub
-            sh "docker push omkargujar30/firstrepo/my-image:21.5"
+            sh "docker push omkargujar30/firstrepo:21.5"
           }
         }
       }
