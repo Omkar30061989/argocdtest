@@ -1,5 +1,10 @@
 pipeline {
   agent any
+  
+  environment {
+    DOCKERHUB_USERNAME = credentials('dockerhub-username')
+    DOCKERHUB_PASSWORD = credentials('dockerhub-password')
+  }
 
   stages {
     stage('Build Docker Image') {
@@ -13,12 +18,7 @@ pipeline {
 
     stage('Push Docker Image to Docker Hub') {
       steps {
-        withCredentials([file(credentialsId: 'dockerhub', variable: 'DOCKERHUB_CREDENTIALS')]) {
           script {
-            def credentialsContent = readFile(file: "${DOCKERHUB_CREDENTIALS}")
-            def credentials = credentialsContent.split(':')
-            def dockerhubUsername = credentials[0].trim()
-            def dockerhubPassword = credentials[1].trim()
 
             // Login to Docker Hub
             sh "docker login -u ${dockerhubUsername} -p ${dockerhubPassword}"
